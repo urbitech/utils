@@ -14,7 +14,7 @@
 	"repositories": [
         {
             "type": "vcs",
-            "url": "http://git.urbitech.cz:3000/URBITECH/urbitech-utils.git"
+            "url": "http://git.urbitech.cz:3000/URBITECH/urbitech-utils"
         }
     ],
     "require": {
