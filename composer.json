@@ -1,0 +1,23 @@
+{
+	"name": "urbitech/utils",
+	"description": "Utilites for Form components",
+	"version": "2.4.0",
+	"homepage": "https://urbitech.cz",
+	"type": "project",
+	"license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"authors": [
+		{
+			"name": "Urbitech s.r.o.",
+			"homepage": "https://urbitech.cz"
+		}
+	],
+	"repositories": [
+        {
+            "type": "path",
+            "url": "../urbitech-utils"
+        }
+    ],
+    "require": {
+		"php": ">=5.6.0"
+    }
+}
