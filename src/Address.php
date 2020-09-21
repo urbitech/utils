@@ -9,7 +9,7 @@ class Address
 	private	$streetNumber;
 
 	private $city;
-	
+
 	private $postCode;
 
 
@@ -34,13 +34,19 @@ class Address
 
 	public function getCity()
 	{
+		$pattern = '/^(\d{3}\s?)(\d{2})/';
+		if ($this->postCode === null && preg_match($pattern, $this->city)) {
+			$city = preg_replace($pattern, '', $this->city);
+			$this->postCode = str_replace($city, '', $this->city);
+			$this->city = $city;
+		}
+
 		return $this->city;
 	}
 
-	
+
 	public function getPostCode()
 	{
 		return $this->postCode;
 	}
-
 }
