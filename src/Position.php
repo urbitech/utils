@@ -8,31 +8,39 @@ class Position
 	/** @var string */
 	private	$lat;
 
-	private $lon;
+	private $lng;
+
+	private $place;
 
 
-	public function __construct($lat, $lon)
+	public function __construct($lat, $lng, $place = null)
 	{
 		$this->lat = $lat;
-		$this->lon = $lon;
+		$this->lng = $lng;
+		$this->place = $place;
 	}
 
 
 	public function getFullPostion()
 	{
-		return $this->lat . $this->lon;
+		return $this->lat . $this->lng;
 	}
 
 
-	public function getLatitude ()
+	public function getLatitude()
 	{
 		return $this->lat;
 	}
 
 
-	public function getLongitude ()
+	public function getLongitude()
 	{
-		return $this->lon;
+		return $this->lng;
 	}
 
+
+	public function getPlace()
+	{
+		return $this->place;
+	}
 }

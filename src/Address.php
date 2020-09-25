@@ -18,12 +18,19 @@ class Address
 		$this->streetNumber = $streetNumber;
 		$this->city = $city;
 		$this->postCode = $postCode;
+
+		$pattern = '/^(\d{3}\s?)(\d{2})/';
+		if ($this->postCode === null && preg_match($pattern, $this->city)) {
+			$city = preg_replace($pattern, '', $this->city);
+			$this->postCode = str_replace($city, '', $this->city);
+			$this->city = $city;
+		}
 	}
 
 
 	public function getFullAddress()
 	{
-		return $this->streetNumber . $this->city . $this->postCode;
+		return $this->streetNumber . ', ' . $this->postCode . ' ' . $this->city;
 	}
 
 
@@ -34,13 +41,6 @@ class Address
 
 	public function getCity()
 	{
-		$pattern = '/^(\d{3}\s?)(\d{2})/';
-		if ($this->postCode === null && preg_match($pattern, $this->city)) {
-			$city = preg_replace($pattern, '', $this->city);
-			$this->postCode = str_replace($city, '', $this->city);
-			$this->city = $city;
-		}
-
 		return $this->city;
 	}
 
