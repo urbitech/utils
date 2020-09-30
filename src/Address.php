@@ -6,16 +6,19 @@ class Address
 {
 
 	/** @var string */
-	private	$streetNumber;
+	private	$street;
+
+	private	$houseNumber;
 
 	private $city;
 
 	private $postCode;
 
 
-	public function __construct($streetNumber, $city, $postCode = NULL)
+	public function __construct($street, $houseNumber, $city, $postCode = NULL)
 	{
-		$this->streetNumber = $streetNumber;
+		$this->street = $street;
+		$this->houseNumber = $houseNumber;
 		$this->city = $city;
 		$this->postCode = $postCode;
 
@@ -30,14 +33,21 @@ class Address
 
 	public function getFullAddress()
 	{
-		return $this->streetNumber . ', ' . $this->postCode . ' ' . $this->city;
+		return $this->street . ' ' . $this->houseNumber . ', ' . $this->postCode . ' ' . $this->city;
 	}
 
 
-	public function getStreetNumber()
+	public function getStreet()
 	{
-		return $this->streetNumber;
+		return $this->street;
 	}
+
+
+	public function getHouseNumber()
+	{
+		return $this->houseNumber;
+	}
+
 
 	public function getCity()
 	{
