@@ -15,7 +15,7 @@ class Address
 	private $postCode;
 
 
-	public function __construct($street, $houseNumber, $city, $postCode = NULL)
+	public function __construct($street, $houseNumber = null, $city, $postCode = NULL)
 	{
 		$this->street = $street;
 		$this->houseNumber = $houseNumber;
@@ -23,10 +23,18 @@ class Address
 		$this->postCode = $postCode;
 
 		$pattern = '/^(\d{3}\s?)(\d{2})/';
+		$streetPattern = '#^(.*[^0-9]+) (([a-zA-Z1-9])?([1-9][0-9]*)(/| )?)?([a-zA-Z1-9][0-9]*[a-zA-Z]?)( [A-Z]\/[0-9]{1,4})?$#';
+
 		if ($this->postCode === null && preg_match($pattern, $this->city)) {
 			$city = preg_replace($pattern, '', $this->city);
 			$this->postCode = str_replace($city, '', $this->city);
 			$this->city = $city;
+		}
+
+		if ($this->houseNumber === null && preg_match($streetPattern, $this->street)) {
+			preg_match($streetPattern, $this->street, $matches);
+			$this->street = $matches[1];
+			$this->houseNumber = str_replace($matches[1], '', $this->street);
 		}
 	}
 
