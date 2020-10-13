@@ -12,12 +12,14 @@ class Position
 
 	private $place;
 
+	private $name;
 
-	public function __construct($lat, $lng, $place = null)
+	public function __construct($lat, $lng, $place = null, $name = null)
 	{
 		$this->lat = $lat;
 		$this->lng = $lng;
 		$this->place = $place;
+		$this->name = $name;
 	}
 
 
@@ -42,5 +44,11 @@ class Position
 	public function getPlace()
 	{
 		return $this->place;
+	}
+
+
+	public function getName()
+	{
+		return $this->name;
 	}
 }
