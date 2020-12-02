@@ -27,8 +27,8 @@ class Address
 
 		if (empty($this->postCode) && preg_match($pattern, $this->city)) {
 			$city = preg_replace($pattern, '', $this->city);
-			$this->postCode = str_replace($city, '', $this->city);
-			$this->city = $city;
+			$this->postCode = trim(str_replace($city, '', $this->city));
+			$this->city = trim($city);
 		}
 
 		if (empty($this->houseNumber) && preg_match($streetPattern, $this->street)) {
