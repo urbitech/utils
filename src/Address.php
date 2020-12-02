@@ -34,7 +34,7 @@ class Address
 		if (empty($this->houseNumber) && preg_match($streetPattern, $this->street)) {
 			preg_match($streetPattern, $this->street, $matches);
 			$this->houseNumber = trim(str_replace($matches[1], '', $this->street));
-			$this->street = $matches[1];
+			$this->street = trim($matches[1]);
 		}
 	}
 
