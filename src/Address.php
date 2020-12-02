@@ -2,6 +2,8 @@
 
 namespace URBITECH\Utils;
 
+use Nette\Utils\Strings;
+
 class Address
 {
 
@@ -26,15 +28,15 @@ class Address
 		$streetPattern = '#^(.*[^0-9]+) (([a-zA-Z1-9])?([1-9][0-9]*)(/| )?)?([a-zA-Z1-9][0-9]*[a-zA-Z]?)( [A-Z]\/[0-9]{1,4})?$#';
 
 		if (empty($this->postCode) && preg_match($pattern, $this->city)) {
-			$city = preg_replace($pattern, '', $this->city);
-			$this->postCode = trim(str_replace($city, '', $this->city));
-			$this->city = trim($city);
+			$city = Strings::replace($this->city, [$pattern => '']);
+			$this->postCode = Strings::trim(Strings::replace($this->city, ['/' . $city . '/' => '']));
+			$this->city = Strings::trim($city);
 		}
 
 		if (empty($this->houseNumber) && preg_match($streetPattern, $this->street)) {
 			preg_match($streetPattern, $this->street, $matches);
-			$this->houseNumber = trim(str_replace($matches[1], '', $this->street));
-			$this->street = trim($matches[1]);
+			$this->houseNumber = Strings::trim(Strings::replace($this->street, ['/' . $matches[1] . '/' => '']));
+			$this->street = Strings::trim($matches[1]);
 		}
 	}
 
