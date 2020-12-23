@@ -41,7 +41,7 @@ class Address
 			try {
 				$this->street = Strings::replace($this->street, ['/\s\/\s/' => '/']);
 				preg_match($streetPattern, $this->street, $matches);
-				$street = $matches[1];
+				$street = isset($matches[1]) ? $matches[1] : null;
 				if (preg_match('/\b(č\.?\s?p\.?\s?|č\.?\s?ev?\.?\s?)\b/ui', $street, $m)) {
 					$street = Strings::replace($street, ['/\b(č\.?\s?p\.?\s?|č\.?\s?ev?\.?\s?)\b/ui' => '']);
 					$street = Strings::replace($street, ['/\./' => '']);
