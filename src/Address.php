@@ -30,25 +30,25 @@ class Address
 		if (empty($this->postCode) && preg_match($zipCodePattern, $this->city)) {
 			try {
 				preg_match($zipCodePattern, $this->city, $matches);
-				$city = Strings::replace($this->city, [$zipCodePattern => '']);
+				$city = $this->city ? Strings::replace($this->city, [$zipCodePattern => '']) : null;
 				$this->postCode = Strings::trim($matches[0]);
-				$this->city = Strings::trim($city);
+				$this->city = $city ? Strings::trim($city) : null;
 			} catch (\Nette\Utils\RegexpException $e) {
 			}
 		}
 
 		if (empty($this->houseNumber) && preg_match($streetPattern, $this->street)) {
 			try {
-				$this->street = Strings::replace($this->street, ['/\s\/\s/' => '/']);
+				$this->street = $this->street ? Strings::replace($this->street, ['/\s\/\s/' => '/']) : null;
 				preg_match($streetPattern, $this->street, $matches);
 				$street = isset($matches[1]) ? $matches[1] : null;
 				if (preg_match('/\b(č\.?\s?p\.?\s?|č\.?\s?ev?\.?\s?)\b/ui', $street, $m)) {
-					$street = Strings::replace($street, ['/\b(č\.?\s?p\.?\s?|č\.?\s?ev?\.?\s?)\b/ui' => '']);
-					$street = Strings::replace($street, ['/\./' => '']);
+					$street = $street ? Strings::replace($street, ['/\b(č\.?\s?p\.?\s?|č\.?\s?ev?\.?\s?)\b/ui' => '']) : null;
+					$street = $street ? Strings::replace($street, ['/\./' => '']) : null;
 				}
 
-				$this->houseNumber =  Strings::trim(Strings::replace($this->street, ['/' . $street . '/ui' => '']));
-				$this->street = Strings::trim($street);
+				$this->houseNumber =  $this->street ? Strings::trim(Strings::replace($this->street, ['/' . $street . '/ui' => ''])) : null;
+				$this->street = $street ? Strings::trim($street) : null;
 			} catch (\Nette\Utils\RegexpException $e) {
 			}
 		}
