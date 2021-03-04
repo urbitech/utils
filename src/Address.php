@@ -25,7 +25,7 @@ class Address
 		$this->postCode = $postCode;
 
 		$zipCodePattern = '/^(\d{3}\s?)(\d{2})/';
-		$streetPattern = '#^(.*[^0-9]+) (([a-zA-Z1-9])?([1-9][0-9]*)(/| )?)?([a-zA-Z1-9][0-9]*[a-zA-Z]?)( [A-Z]\/[0-9]{1,4})?$#';
+		$streetPattern = '#^(.*[^0-9]+) (([a-zA-Z1-9])?([1-9][0-9]*)(\s?/| )?)?([a-zA-Z1-9][0-9]*[a-zA-Z]?)( [A-Z]\/[0-9]{1,4})?$#';
 
 		if (empty($this->postCode) && preg_match($zipCodePattern, $this->city)) {
 			try {
