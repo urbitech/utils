@@ -18,5 +18,20 @@ class Validators
 
 		return true;
 	}
-	
-}	
+
+
+	public static function validateAddress($address)
+	{
+
+		if (
+			Strings::length($address->getHouseNumber())
+			&& Strings::length($address->getCity())
+			&& Strings::length($address->getPostCode())
+			&& Validators::validatePostCode($address->getPostCode())
+		) {
+			return true;
+		}
+
+		return false;
+	}
+}
