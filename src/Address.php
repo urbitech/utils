@@ -17,11 +17,11 @@ class Address
 	private $postCode;
 
 
-	public function __construct($street, $houseNumber = null, $city, $postCode = NULL)
+	public function __construct($street, $city, $houseNumber = null, $postCode = NULL)
 	{
 		$this->street = $street;
-		$this->houseNumber = $houseNumber;
 		$this->city = $city;
+		$this->houseNumber = $houseNumber;
 		$this->postCode = $postCode;
 
 		$zipCodePattern = '/^(\d{3}\s?)(\d{2})/';
